@@ -1,0 +1,83 @@
+NAME : SRIDHARAN.V.R.
+CLASS : AIDS I YEAR
+SECTION:A
+
+
+#include <stdio.h>
+#include <string.h>
+
+typedef struct Student{
+    char name[100];
+    int rollnum;
+    float mark;
+}str;
+
+
+void print(str st[]){
+    for(int i = 0 ; i < 3 ; i++){
+        printf("Details of student %d : \n",i+1);
+        printf("Student name : %s\nStudent roll number : %d\nStudent marks : %f\n\n",st[i].name,st[i].rollnum,st[i].mark);
+    }
+}
+
+int leastscore(str st[]){
+    int minmark = 0;
+for(int i = 0 ; i < 3 ; i++){
+    
+    if(st[i].mark < st[minmark].mark){
+        minmark = i;
+    }
+}
+return minmark;
+}
+
+
+int main(){
+    str st[3];
+
+    for(int i = 0 ; i < 3 ; i++){
+        printf("Enter student %d details : \n",i+1);
+        printf("Enter student %d name: ",i+1);
+        scanf(" %[^\n]", st[i].name);
+  
+       
+        printf("Enter student %d roll number : ",i+1);
+        scanf(" %d",&st[i].rollnum);
+
+        printf("Enter student %d marks : ",i+1);
+        scanf(" %f",&st[i].mark);
+        printf("\n");
+    }
+    
+    printf("Menu to do next operations: \nEnter 1 - Find the student with the least marks\nEnter 2 - Print details of all students\nEnter 3 - Exit\n\n");
+
+    int menu;
+    printf("Enter your choice(1 / 2 / 3): ");
+    scanf("%d",&menu);
+
+    if(menu < 1 || menu > 3){
+        printf("Invalid choice! Please enter a valid choice(1 / 2 / 3)\n");
+         printf("Enter your choice correctly(1 / 2 / 3): ");
+         scanf("%d",&menu);
+    }
+    
+    switch(menu){
+        case 1:
+        int i = leastscore(st);
+        printf("Student with the least mark : Student %d : %s\n",i + 1 , st[i].name);
+        break;
+
+        case 2:
+        print(st);
+        break;
+
+        case 3:
+        printf("Exited successfully\n");
+        return 0;
+
+        default:
+        printf("Invalid choice! Exiting program.\n");
+        return 0;
+    }
+    return 0;
+}
